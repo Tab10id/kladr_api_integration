@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'kladr_api_integration/version'
+require 'kladr_api/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'kladr_api_integration'
-  spec.version       = KladrApiIntegration::VERSION
+  spec.name          = 'kladr_api'
+  spec.version       = KladrApi::VERSION
   spec.authors       = ['Dmitriy Lisichkin']
   spec.email         = ['dima@sb42.ru']
   spec.summary       = %q{Backend for kladr-api.ru service}
@@ -19,8 +19,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'httparty'
+  spec.add_dependency 'railties', '>= 3.1'
 
   spec.add_development_dependency 'bundler', '~> 1.5'
   spec.add_development_dependency 'rake'
-  spec.add_development_dependency 'rails', '~> 3.2.12'
+  spec.add_development_dependency 'httparty'
 end

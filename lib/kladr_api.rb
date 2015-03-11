@@ -1,4 +1,7 @@
+require 'httparty'
+
 class KladrApi
+  extend ActiveSupport::Autoload
   include HTTParty
 
   cattr_accessor :token
@@ -6,7 +9,15 @@ class KladrApi
   cattr_accessor :default_limit
   @@default_limit = nil
 
+  cattr_accessor :configured
+  @@configured = false
+
+  def self.configured? #:nodoc:
+    @@configured
+  end
+
   def self.setup
+    @@configured = true
     yield self
   end
 
@@ -41,3 +52,5 @@ class KladrApi
     address_objects(query, additional_options.merge(contentType: 'building'))
   end
 end
+
+require 'kladr_api/railtie' if defined?(Rails)
